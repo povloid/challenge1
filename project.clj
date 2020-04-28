@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.597"]
                  [compojure "1.6.1"]
-                 [com.taoensso/timbre "4.10.0"]]
+                 [com.taoensso/timbre "4.10.0"]
+                 [ring/ring-json "0.5.0"]]
 
   :jvm-opts ^:replace ["-Xmx500m" "-server" "-Dfile.encoding=UTF-8"]
 

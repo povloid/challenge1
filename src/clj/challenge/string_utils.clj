@@ -1,6 +1,5 @@
 (ns challenge.string-utils)
 
-
 (defn delete-first [c s]
   (loop [acc [] s s]
     (if (empty? s) acc
@@ -8,7 +7,6 @@
           (if (= c cs)
             (concat acc s)
             (recur (conj acc cs) s))))))
-
 
 (defn scramble? [s1 s2]
   (->> s1
@@ -20,8 +18,8 @@
                s2)
        (nil?)))
 
-
-(defn test []
+;; Need for tests
+#_(defn test []
   [(is (= (scramble? "rekqodlw"          "world")    true))
    (is (= (scramble? "cedewaraaossoqqyt" "codewars") true))
    (is (= (scramble? "katas"             "steak")    false))])
