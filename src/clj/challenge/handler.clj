@@ -11,12 +11,12 @@
 
   (GET "/" [] "<h1>Hello World</h1>")
 
-  (GET "/api/string/is_scramble/:s1{[a-z]+}/for/:s2{[a-z]+}"
+  (GET "/api/string/is_scramble/:s1{^[a-z]*$}/for/:s2{^[a-z]*$}"
        {{:keys [s1 s2]} :params :as request}
        (log/info ">>> GET > " request)
        (str (scramble? s1 s2)))
 
-  (GET "/api/string/is_scramble/:s1{[a-z]+}/for/:s2{[a-z]+}/json"
+  (GET "/api/string/is_scramble/:s1{^[a-z]*$}/for/:s2{^[a-z]*$}/json"
        {{:keys [s1 s2]} :params :as request}
        (log/info ">>> GET > " request)
        (response {:result (scramble? s1 s2)}))
