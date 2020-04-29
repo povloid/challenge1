@@ -9,9 +9,9 @@ Performance needs to be considered
 
 Examples:
 ```
-(scramble? “rekqodlw” ”world') ==> true
-(scramble? “cedewaraaossoqqyt” ”codewars”) ==> true
-(scramble? “katas”  “steak”) ==> false
+(scramble? "rekqodlw" "world") ==> true
+(scramble? "cedewaraaossoqqyt" "codewars") ==> true
+(scramble? "katas"  "steak") ==> false
 ```
 
 ## Task 2
