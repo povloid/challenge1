@@ -10,29 +10,43 @@
    {:db db/default-db}))
 
 
-(defn change [old-value new-value]
-  (if (.test #"^[a-z]*$" new-value)
-    new-value
-    old-value))
+
 
 (reg-event-db
  ::set-input-s1-value
  (fn [db [_ value]]
-   (update db :input-s1 change value)))
+   (assoc db :input-s1 value)))
 
 (reg-event-db
  ::set-input-s2-value
  (fn [db [_ value]]
-   (update db :input-s2 change value)))
+   (assoc db :input-s2 value)))
 
+
+(defn valid? [value]
+  (.test #"^[a-z]*$" value))
 
 (reg-event-fx
  ::check
  (fn [{{:keys [input-s1 input-s2] :as db} :db} _]
-   {:db    (-> db
-               (dissoc :alert))
-    ::post {:s1 input-s1
-            :s2 input-s2}}))
+   (let [input-s1-valid? (valid? input-s1)
+         input-s2-valid? (valid? input-s2)
+         db              (-> db
+                             (dissoc :alert
+                                     :input-s1-helper
+                                     :input-s2-helper))]
+     (if (and input-s1-valid?
+              input-s2-valid?)
+       {:db    db
+        ::post {:s1 input-s1
+                :s2 input-s2}}
+       {:db (cond-> (-> db
+                        (assoc :alert {:type    :danger
+                                       :message "Bad input values"}))
+              (not input-s1-valid?) (assoc :input-s1-helper {:type    :danger
+                                                             :message "Bad value"})
+              (not input-s2-valid?) (assoc :input-s2-helper {:type    :danger
+                                                             :message "Bad value"}))}))))
 
 (reg-fx
  ::post
