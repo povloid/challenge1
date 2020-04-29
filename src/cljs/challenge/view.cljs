@@ -13,7 +13,7 @@
     nil))
 
 (defn main-page []
-  [:div.container
+  [:div.container.pt-4
    [:h1 "Scramblies challenge"]
    [:div.form
     [:div.form-group
