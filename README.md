@@ -59,4 +59,4 @@ and run it as
 java -jar target/challenge-0.1.0-standalone.jar
 ```
 
-# Good lack!
+## Good luck!

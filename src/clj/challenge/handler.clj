@@ -22,6 +22,7 @@
        (log/info ">>> GET > " request)
        (response {:result (scramble? s1 s2)}))
 
+  ;; TODO: need to add serverside validation for POST, may be it will be clojure spec.
   (POST "/api/string/is_scramble"
         {{:keys [s1 s2]} :body :as request}
         (log/info ">>> POST > " request)
