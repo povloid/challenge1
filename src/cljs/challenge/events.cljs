@@ -10,8 +10,6 @@
    {:db db/default-db}))
 
 
-
-
 (reg-event-db
  ::set-input-s1-value
  (fn [db [_ value]]
@@ -24,7 +22,7 @@
 
 
 (defn valid? [value]
-  (.test #"^[a-z]*$" value))
+  (.test #"^[a-z]+$" value))
 
 (reg-event-fx
  ::check
