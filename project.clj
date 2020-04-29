@@ -14,7 +14,8 @@
 
   :jvm-opts ^:replace ["-Dfile.encoding=UTF-8"]
 
-  :plugins [[lein-ring "0.12.5"]
+  :plugins [[lein-cljsbuild "1.1.8"]
+            [lein-ring "0.12.5"]
             [lein-figwheel "0.5.19"]]
 
   :ring {:handler       challenge.handler/app
@@ -23,8 +24,11 @@
          :uberwar-name  "challenge.war"
          :port          3000}
 
+  :auto-clean false
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "target"]
+
+  :resource-paths ["resources"]
 
   :source-paths ["src/cljc"
                  "src/clj"

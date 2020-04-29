@@ -3,13 +3,14 @@
             [compojure.route :as route]
             [ring.middleware.json :refer [wrap-json-body
                                           wrap-json-response]]
-            [ring.util.response :refer [response]]
+            [ring.util.response :refer [response
+                                        redirect]]
             [taoensso.timbre :as log]
             [challenge.string-utils :refer [scramble?]]))
 
 (defroutes handler
-
-  (GET "/" [] "<h1>Hello World</h1>")
+  (GET "/" req
+       (redirect "/index.html"))
 
   (GET "/api/string/is_scramble/:s1{^[a-z]+$}/for/:s2{^[a-z]+$}"
        {{:keys [s1 s2]} :params :as request}
@@ -26,6 +27,7 @@
         (log/info ">>> POST > " request)
         (response {:result (scramble? s1 s2)}))
 
+  (route/resources "/")
   (route/not-found "<h1>Page not found</h1>"))
 
 
